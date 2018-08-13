@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  <table>
+      <div class="table-responsive">  
+
+           <table class="table table-bordered"> 
+
+                <tr>  
+
+                     <td width="30%"><label> Keterangan </label></td>  
+
+                     <td width="70%">Lapar</td>  
+
+                </tr>
+
+                <tr>
+
+                    <td width="30%"><label> Alamat Lokasi </label></td>  
+
+                    <td width="70%">Jl. Tubagus Ismail Dalam No.32, Lebakgede, Coblong, Kota Bandung, Jawa Barat 40132, Indonesia</td> 
+
+                </tr>
+
+                <tr>
+
+                    <td colspan="2" width="100%" id="peta" style="text-align: center;width:400px;height:400px;"></td> 
+
+                </tr>
+
+                  
+
+      </table>  
+
+      </div>
+	   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAn0sCC7HGqbJbWhwkgJnvyWFiTa7QGtVI&sensor=false" type="text/javascript"></script> 
+      <script type="text/javascript">
+
+      var labels = "Lokasi Anda";
+
+      var labelIndex = 0;
+
+      function initialize() {
+
+        var lokasi = { lat: 12.97, lng: 77.59 };
+
+        var map = new google.maps.Map(document.getElementById("peta"), {
+
+          zoom: 12,
+
+          center: lokasi
+
+        });
+
+        addMarker(lokasi, map);
+
+      }
+
+      function addMarker(location, map) {
+
+        var marker = new google.maps.Marker({
+
+          position: location,
+
+          label: labels[labelIndex++ % labels.length],
+
+          map: map
+
+        });
+
+      }
+
+      google.maps.event.addDomListener(window, "load", initialize);
+
+    </script>
+
+  </body>
+</html>

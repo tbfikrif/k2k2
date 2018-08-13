@@ -1,0 +1,162 @@
+<style>
+	/*button Export CSV Excel PDF*/
+	/*
+	div.dt-buttons {
+		float: right;
+		margin-left: 10px;
+	}
+
+	.fc-sat {
+		background-color: #FF0000;
+		color: #FFFFFF;
+	}
+
+	.fc-sun {
+		background-color: #FF0000;
+		color: #FFFFFF;
+	}
+	*/
+</style>
+ <!--FUNGSI Mouse On Drag -->
+<script type="text/javascript" src='dist/js/myjs/onDrag.js'></script>
+
+<div class="container bounceInUp animated">
+	<div class="content-header bounceInRight animated">
+		<h2>DATA LIBUR</h2>
+		<button id="modeCalendarLibur" disabled="disabled" class="btn btn-primary" data-toggle="collapse" data-target="#external-events">Mode Calendar</button>
+		<button id="modeTabelLibur" class="btn btn-info" data-toggle="collapse" data-target="#tabelLibur">Mode Tabel</button>
+	</div>
+	<hr>
+	<div class="row collapse" id="tabelLibur">
+		<div class="col-md-3">
+			<h3> FORM TAMBAH DATA </h3>
+			<!-- form start -->
+				<div class="box-body" style="margin-right: 20px;">
+					<div class="form-group">
+						<label for="Credit">Nama Libur</label>
+						<input type="text" class="form-control" id="namaLiburFormTambah" name="namaLiburFormTambah" placeholder="Isi Nama Libur" data-validation="required"
+						 data-validation-error-msg="Field Nama Libur Tidak Boleh Kosong !">
+					</div>
+					<!-- Date -->
+					<div class="form-group">
+						<label>Date:</label>
+						<div class="input-group date">
+							<div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
+							</div>
+							<input type="text" class="form-control pull-right" id="tglRentangLiburTambah" name="tglRentangLiburTambah">
+						</div>
+						<!-- /.input group -->
+					</div>
+					<!-- /.form group -->
+					<button type="button" name="buttonFormTambahLibur" id="buttonFormTambahLibur" class="btn btn-primary">Tambah</button>
+				</div>
+				<!-- /.box-body -->
+		</div>
+
+		<!-- left column -->
+		<div class="col-md-9">
+			<h3> LIST TANGGAL LIBUR </h3>
+			<div class="table-responsive" id="tabel_libur">
+				<table class="table" id="data_libur">
+					<thead>
+						<tr>
+							<th> ID</th>
+							<th> Nama Libur </th>
+							<th> Dari </th>
+							<th> Sampai </th>
+							<th> Action </th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<!--<img src onerror="fetchDataLibur()">-->
+		</div>
+	</div>
+			<div id="external-events">
+				<p>
+				<img src="pages/views/forms/trash-can.png" id="trash" alt="">
+				</p>
+				<div id="calendarLibur"></div>
+			</div>
+			
+</div>
+<div id="liburDeleteModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Hapus Data</h4>
+			</div>
+			<div class="modal-body" id="libur_detail_hapus">
+			</div>
+			<div class="modal-footer">
+				<button type="button" name="buttonDeleteLibur" id="buttonDeleteLibur" class="btn btn-danger">Hapus</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="liburTambahModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">TAMBAH TANGGAL LIBUR</h4>
+			</div>
+			<div class="modal-body">
+				<br>
+				<label>Nama Libur</label>
+				<input type="text" name="namaLiburTambah" id="namaLiburTambah" class="form-control" />
+				<!-- Date -->
+				<div class="form-group">
+					<label>Date:</label>
+					<div class="input-group date">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</div>
+						<input type="text" class="form-control pull-right" id="tglRentangLiburTambah2" name="tglRentangLiburTambah2">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" name="buttonTambahLibur" id="buttonTambahLibur" class="btn btn-primary">Tambah</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="liburEditModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">EDIT TANGGAL LIBUR</h4>
+			</div>
+			<div class="modal-body">
+				<label>ID</label>
+				<input type="text" name="idLiburEdit" id="idLiburEdit" class="form-control" readonly />
+				<br />
+				<label>Nama Libur</label>
+				<input type="text" name="namaLiburEdit" id="namaLiburEdit" class="form-control" />
+				<!-- Date -->
+				<div class="form-group">
+					<label>Tanggal:</label>
+					<div class="input-group date">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</div>
+						<input type="text" class="form-control pull-right" id="tglRentangLiburEdit" name="tglRentangLiburEdit">
+					</div>
+					<!-- /.input group -->
+				</div>
+				<!-- /.form group -->
+			</div>
+			<div class="modal-footer">
+				<button type="button" name="buttonEditLibur" id="buttonEditLibur" class="btn btn-success">EDIT</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

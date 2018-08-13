@@ -1,0 +1,506 @@
+<style type="text/css">
+    @media (max-width: 640px) {
+        .btn-xl {
+            padding: 40px 40px;
+            font-size: 14px;
+            line-height: 1;
+        }
+        #submit_hadirdiluar_form {
+            padding: 29px 40px;
+        }
+        #submit_kerjaremote_form {
+            padding: 29px 40px;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .btn-xl {
+            padding: 45px 45px;
+            font-size: 15px;
+            line-height: 1;
+        }
+        #submit_hadirdiluar_form {
+            padding: 33px 45px;
+        }
+        #submit_kerjaremote_form {
+            padding: 33px 45px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .btn-xl {
+            padding: 45px 45px;
+            font-size: 15px;
+            line-height: 1;
+        }
+        #submit_hadirdiluar_form {
+            padding: 33px 40px;
+        }
+        #submit_kerjaremote_form {
+            padding: 33px 45px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .btn-xl {
+            padding: 50px 50px;
+            font-size: 20px;
+            border-radius: 0px;
+
+        }
+        #submit_hadirdiluar_form {
+            padding: 36px 40px;
+        }
+        #submit_kerjaremote_form {
+            padding: 36px 40px;
+        }
+    }
+
+    td.spasi {
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+
+    .btn-wrap-text {
+        white-space: normal !important;
+        word-wrap: break-word;
+        display: block;
+        border-radius: 0px;
+    }
+
+    /*Toggle Checkbox Slider Round */
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .switch input {
+        display: none;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    /*end Toggle Checkbox Slider Round */
+</style>
+
+<body>
+    <div class="container fadeInLeft animated" style="width: 80%;">
+        <h1>Halo
+            <span id="namaFormAbsensi"></span>, Yuk isi Absen dulu!</h1>
+
+    </div>
+    <div class="container fadeInLeft animated" style="width: 80%;">
+        <h2>FORM ABSENSI</h2>
+        <br>
+        <h3>Izinkan Lokasi untuk bisa absen masuk/keluar:</h3>
+        <label class="switch">
+            <input type="checkbox" id="toggleIzinkanLokasi" onclick="getUserLocation()">
+            <span class="slider round"></span>
+        </label>
+        <div class="form-group">
+            <input type="text" class="form-control" id="latitude" name="latitude" style="display: none;" readonly>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="longitude" name="longitude" style="display: none;" readonly>
+        </div>
+
+        <table>
+            <tr>
+                <td class="spasi">
+                    <button style="display:none" type="button" id="submit_keluar" name="submit_keluar" class="btn btn-danger btn-xl btn-block btn-wrap-text">Keluar</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="spasi">
+                    <button style="display:none" type="button" id="submit_hadir_form" name="submit_hadir_form" class="btn btn-info btn-xl btn-block btn-wrap-text">Hadir</button>
+                </td>
+                <td class="spasi">
+                    <button style="display:none" id="submit_hadirdiluar_form" name="submit_hadirdiluar_form" type="button" class="btn btn-primary btn-xl btn-block btn-wrap-text"
+                        data-toggle="modal" data-target="#myModal_hadirdiluar">Tugas
+                        <p>Kantor</p>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td class="spasi">
+                    <button style="display:none" type="button" id="submit_sakit_form" name="submit_sakit_form" class="btn btn-danger btn-xl btn-block btn-wrap-text"
+                        data-toggle="modal" data-target="#myModal_sakit">Sakit</button>
+                </td>
+                <td class="spasi">
+                    <button style="display:none" type="button" id="submit_izin_form" name="submit_izin_form" class="btn btn-warning btn-xl btn-block btn-wrap-text"
+                        data-toggle="modal" data-target="#myModal_izin">Izin</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="spasi">
+                    <button style="display:none" type="button" id="submit_cuti_form" name="submit_cuti_form" class="btn btn-success btn-xl btn-block btn-wrap-text"
+                        data-toggle="modal" data-target="#myModal_cuti">Cuti</button>
+                </td>
+                <td class="spasi">
+                    <button style="display:none" id="submit_kerjaremote_form" name="submit_kerjaremote_form" type="button" class="btn btn-default btn-xl btn-block btn-wrap-text"
+                        data-toggle="modal" data-target="#myModal_kerjaremote">Kerja
+                        <p>Remote</p>
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Trigger the modal with a button -->
+        <!-- <Button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal_pesan" onclick="formatPesan();getUserLocation()">KONFIRMASI</Button>-->
+    </div>
+    <br>
+    <br>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal_hadirdiluar" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold">Tugas Kantor</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Digunakan untuk ajaxForm Modal Absen untuk new FormData()-->
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="status" name="status" style="display: none;" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="address"> Alamat Lokasi </label>
+                        <input type="text" class="form-control" id="address_hadirdiluar" placeholder="Mengharuskan Izin Lokasi" name="adress_hadirdiluar"
+                            readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan"> Keterangan </label>
+                        <textarea class="form-control" rows="3" id="keterangan_hadirdiluar" name="keterangan_hadirdiluar" placeholder="Isi Keterangan"></textarea>
+                        <span class="help-block"></span>
+                    </div>
+                    <!-- image-preview-filename input [CUT FROM HERE]-->
+                    <label for="foto_hadirdiluar"> Foto Lokasi
+                        <span class="glyphicon glyphicon-upload"></span> (Optional)</label>
+                    <div class="form-group input-group image-preview">
+                        <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                        <!-- don't give a name === doesn't send on POST/GET -->
+                        <span class="input-group-btn">
+                            <!-- image-preview-clear button -->
+                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                <span class="glyphicon glyphicon-remove"></span> Clear
+                            </button>
+                            <!-- image-preview-input -->
+                            <div class="btn btn-default image-preview-input">
+                                <span class="glyphicon glyphicon-folder-open"></span>
+                                <span class="image-preview-input-title">Browse</span>
+                                <input type="file" accept="image/png, image/jpeg, image/gif" id="image_hadirdiluar" name="image_hadirdiluar" />
+                                <!-- rename it -->
+                                <br />
+                            </div>
+                        </span>
+                    </div>
+                    <!-- /input-group image-preview [TO HERE]-->
+
+                    <div class="modal-footer">
+                        <input type="button" id="submit_hadirdiluar_modal" name="submit_hadirdiluar_modal" value="Submit Tugas Kantor" class="btn btn-primary btn-sm">
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="myModal_sakit" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold">Sakit</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Digunakan untuk ajaxForm Modal Absen untuk new FormData()-->
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="status" name="status" style="display: none;" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="address"> Alamat Lokasi </label>
+                        <input type="text" class="form-control" id="address_sakit" placeholder="Mengharuskan Izin Lokasi" name="adress_sakit" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan"> Alasan </label>
+                        <textarea class="form-control" rows="3" id="keterangan_sakit" name="keterangan_sakit" placeholder="Isi Alasan"></textarea>
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Sakit:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" class="form-control pull-right" id="tglRentangSakit" name="tglRentangSakit">
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                    <!-- /.form group -->
+                    <!-- image-preview-filename input [CUT FROM HERE]-->
+                    <!-- image-preview-filename input [CUT FROM HERE]-->
+                    <label for="foto_sakit"> Foto Lokasi
+                        <span class="glyphicon glyphicon-upload"></span> (Optional)</label>
+                    <div class="form-group input-group image-preview">
+                        <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                        <!-- don't give a name === doesn't send on POST/GET -->
+                        <span class="input-group-btn">
+                            <!-- image-preview-clear button -->
+                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                <span class="glyphicon glyphicon-remove"></span> Clear
+                            </button>
+                            <!-- image-preview-input -->
+                            <div class="btn btn-default image-preview-input">
+                                <span class="glyphicon glyphicon-folder-open"></span>
+                                <span class="image-preview-input-title">Browse</span>
+                                <input type="file" accept="image/png, image/jpeg, image/gif" id="image_sakit" name="image_sakit" />
+                                <!-- rename it -->
+                            </div>
+                        </span>
+                    </div>
+                    <!-- /input-group image-preview [TO HERE]-->
+                    <div class="modal-footer">
+                        <input type="button" id="submit_sakit_modal" name="submit_sakit_modal" value="Submit Sakit" class="btn btn-danger btn-sm">
+                        <button type="button" class="btn btn-default btn-sm submit_sakit" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="myModal_izin" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold">Izin</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Digunakan untuk ajaxForm Modal Absen untuk new FormData()-->
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="status" name="status" style="display: none;" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="address"> Alamat Lokasi </label>
+                        <input type="text" class="form-control" id="address_izin" placeholder="Mengharuskan Izin Lokasi" name="adress_izin" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan"> Alasan </label>
+                        <textarea class="form-control" rows="3" id="keterangan_izin" name="keterangan_izin" placeholder="Isi Alasan"></textarea>
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Izin:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" class="form-control pull-right" id="tglRentangIzin" name="tglRentangIzin">
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                    <!-- /.form group -->
+                    <!-- image-preview-filename input [CUT FROM HERE]-->
+                    <label for="foto_izin"> Foto Lokasi
+                        <span class="glyphicon glyphicon-upload"></span> (Optional)</label>
+                    <div class="form-group input-group image-preview">
+                        <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                        <!-- don't give a name === doesn't send on POST/GET -->
+                        <span class="input-group-btn">
+                            <!-- image-preview-clear button -->
+                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                <span class="glyphicon glyphicon-remove"></span> Clear
+                            </button>
+                            <!-- image-preview-input -->
+                            <div class="btn btn-default image-preview-input">
+                                <span class="glyphicon glyphicon-folder-open"></span>
+                                <span class="image-preview-input-title">Browse</span>
+                                <input type="file" accept="image/png, image/jpeg, image/gif" id="image_izin" name="image_izin" />
+                                <!-- rename it -->
+                            </div>
+                        </span>
+                    </div>
+                    <!-- /input-group image-preview [TO HERE]-->
+                    <div class="modal-footer">
+                        <input type="button" id="submit_izin_modal" name="submit_izin_modal" value="Submit Izin" class="btn btn-warning btn-sm">
+                        <button type="button" class="btn btn-default btn-sm submit_izin" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="myModal_cuti" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold">Cuti</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Digunakan untuk ajaxForm Modal Absen untuk new FormData()-->
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="status" name="status" style="display: none;" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="address"> Alamat Lokasi </label>
+                        <input type="text" class="form-control" id="address_cuti" placeholder="Mengharuskan Izin Lokasi" name="adress_cuti" readonly>
+                    </div>
+                    <!-- Date dd/mm/yyyy -->
+                    <!-- Date range -->
+                    <label>Sisa Cuti:
+                        <span id="sisa-cuti-from-absensi">
+                        </span> hari</label>
+                    <div class="form-group">
+                        <label>Tanggal Cuti:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" class="form-control pull-right" id="tglRentangCuti" name="tglRentangCuti">
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                    <!-- /.form group -->
+                    <div class="form-group">
+                        <label for="keterangan"> Alasan </label>
+                        <textarea class="form-control" rows="3" id="keterangan_cuti" name="keterangan_cuti" placeholder="Isi Alasan"></textarea>
+                        <span class="help-block"></span>
+                    </div>
+                    <!-- image-preview-filename input [CUT FROM HERE]-->
+                    <label for="foto_cuti"> Foto Lokasi
+                        <span class="glyphicon glyphicon-upload"></span> (Optional)</label>
+                    <div class="form-group input-group image-preview">
+                        <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                        <!-- don't give a name === doesn't send on POST/GET -->
+                        <span class="input-group-btn">
+                            <!-- image-preview-clear button -->
+                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                <span class="glyphicon glyphicon-remove"></span> Clear
+                            </button>
+                            <!-- image-preview-input -->
+                            <div class="btn btn-default image-preview-input">
+                                <span class="glyphicon glyphicon-folder-open"></span>
+                                <span class="image-preview-input-title">Browse</span>
+                                <input type="file" accept="image/png, image/jpeg, image/gif" id="image_cuti" name="image_cuti" />
+                                <!-- rename it -->
+                            </div>
+                        </span>
+                    </div>
+                    <!-- /input-group image-preview [TO HERE]-->
+                    <div class="modal-footer">
+                        <input type="button" id="submit_cuti_modal" name="submit_cuti_modal" value="Submit Cuti" class="btn btn-success btn-sm">
+                        <button type="button" class="btn btn-default btn-sm submit_cuti" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal_kerjaremote" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold">Kerja Remote</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Digunakan untuk ajaxForm Modal Absen untuk new FormData()-->
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="status" name="status" style="display: none;" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="address"> Alamat Lokasi </label>
+                        <input type="text" class="form-control" id="address_kerjaremote" placeholder="Mengharuskan Izin Lokasi" name="adress_hadirdiluar"
+                            readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan"> Keterangan </label>
+                        <textarea class="form-control" rows="3" id="keterangan_kerjaremote" name="keterangan_kerjaremote" placeholder="Isi Keterangan"></textarea>
+                        <span class="help-block"></span>
+                    </div>
+                    <!-- image-preview-filename input [CUT FROM HERE]-->
+                    <label for="foto_kerjaremote"> Foto Lokasi
+                        <span class="glyphicon glyphicon-upload"></span> (Optional)</label>
+                    <div class="form-group input-group image-preview">
+                        <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                        <!-- don't give a name === doesn't send on POST/GET -->
+                        <span class="input-group-btn">
+                            <!-- image-preview-clear button -->
+                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                <span class="glyphicon glyphicon-remove"></span> Clear
+                            </button>
+                            <!-- image-preview-input -->
+                            <div class="btn btn-default image-preview-input">
+                                <span class="glyphicon glyphicon-folder-open"></span>
+                                <span class="image-preview-input-title">Browse</span>
+                                <input type="file" accept="image/png, image/jpeg, image/gif" id="image_kerjaremote" name="image_kerjaremote" />
+                                <!-- rename it -->
+                            </div>
+                        </span>
+                    </div>
+                    <!-- /input-group image-preview [TO HERE]-->
+
+                    <div class="modal-footer">
+                        <input type="button" id="submit_kerjaremote_modal" name="submit_kerjaremote_modal" value="Submit Kerja Remote" class="btn btn-default btn-sm">
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
