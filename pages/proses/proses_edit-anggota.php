@@ -12,6 +12,10 @@ if (isset($_POST["id_anggota"])) {
     $tgl_lahir = antiInjection($_POST["tgl_lahir"]);
     $jenis_kelamin = antiInjection($_POST['jenis_kelamin']);
     $email = antiInjection($_POST["email"]);
+    $status = antiInjection($_POST["status"]);
+    $noktp = antiInjection($_POST["noktp"]);
+    $norek = antiInjection($_POST["norek"]);
+    $npwp = antiInjection($_POST["npwp"]);
     if (isset($_GET["action"]) && ($_GET["action"] == "tampil") && ($_GET["sidebar-menu"] == "data-anggota")) {
         $id_jabatan_sebelumnya = $_SESSION["id_jabatan_sebelumnya_edit"];
         $id_jabatan = antiInjection($_POST["jabatan"]);
@@ -29,7 +33,8 @@ if (isset($_POST["id_anggota"])) {
         }
         echo '<script>alert("Data Anggota Berhasil Di Update ' . $id . '"); document.location.href="../../tampil/profile" </script>';
     } else {
-        $query = "UPDATE tb_anggota SET nama='$nama', alamat='$alamat', tempat_lahir='$tempat_lahir', tgl_lahir = '$tgl_lahir',jenis_kelamin='$jenis_kelamin', email = '$email'
+        $query = "UPDATE tb_anggota SET nama='$nama', alamat='$alamat', tempat_lahir='$tempat_lahir', tgl_lahir = '$tgl_lahir',jenis_kelamin='$jenis_kelamin', email = '$email', status = '$status'
+          , no_ktp = '$noktp' , no_rekening = '$norek', npwp = '$npwp'
         WHERE id_anggota='$id'";
          $result = mysqli_query($koneksi, $query);
          if (!$result) {

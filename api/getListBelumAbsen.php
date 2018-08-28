@@ -2,7 +2,7 @@
     require_once('../con_db.php');
     
     $tanggal = date("Y-m-d");
-    $sql = "SELECT * FROM tb_anggota WHERE id_anggota NOT IN(SELECT tb_anggota.id_anggota FROM tb_detail_absen JOIN tb_anggota ON tb_detail_absen.id_anggota=tb_anggota.id_anggota WHERE tanggal = '$tanggal')";
+    $sql = "SELECT * FROM tb_anggota WHERE id_anggota NOT IN(SELECT tb_anggota.id_anggota FROM tb_detail_absen JOIN tb_anggota ON tb_detail_absen.id_anggota=tb_anggota.id_anggota WHERE tanggal = '$tanggal') AND status = 'Aktif'";
 
     $query = mysqli_query($koneksi, $sql);
 

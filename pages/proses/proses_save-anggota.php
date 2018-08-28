@@ -47,10 +47,26 @@ if ($_POST['jenis_kelamin'] != '') {
     $jenis_kelamin = $_POST['jenis_kelamin'];
 } else {
     $jenis_kelamin = '-';
+}if ($_POST['status'] != '') {
+    $status = $_POST['status'];
+} else {
+    $status = '-';
+}if ($_POST['noktp'] != '') {
+    $noktp = $_POST['noktp'];
+} else {
+    $noktp = '-';
+}if ($_POST['norek'] != '') {
+    $norek = $_POST['norek'];
+} else {
+    $norek = '-';
+}if ($_POST['npwp'] != '') {
+    $npwp = $_POST['npwp'];
+} else {
+    $npwp = '-';
 }
 
 //query untuk memasukan ke database
-$query = "INSERT INTO tb_anggota (id_anggota, nama, email, alamat, tempat_lahir, tgl_lahir, jenis_kelamin, password, foto_profile)VALUES('$id', '$nama', '$email', '$alamat', '$tempat_lahir', '$tgl_new_format' , '$jenis_kelamin',  '$password','-')";
+$query = "INSERT INTO tb_anggota (id_anggota, nama, email, alamat, tempat_lahir, tgl_lahir, jenis_kelamin, password,status,no_ktp,no_rekening,npwp, foto_profile)VALUES('$id', '$nama', '$email', '$alamat', '$tempat_lahir', '$tgl_new_format' , '$jenis_kelamin',  '$password','$status','$noktp','$norek','$npwp','-')";
 $insert = mysqli_query($koneksi, $query);
 
 if (!$insert) {

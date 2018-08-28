@@ -1126,6 +1126,17 @@ $(function () {
         $('#dataModalAnggota').modal("show");
       }
     });
+
+       $(document).on('click', '.previous', function(){
+        var id_anggota = $(this).attr("id");
+        fetch_post_data(id_anggota);
+       });
+
+       $(document).on('click', '.next', function(){
+        var id_anggota = $(this).attr("id");
+        fetch_post_data(id_anggota);
+       });
+
   });
   $(document).on('click', '.edit_data_anggota', function () {
     var id_anggota = $(this).attr("id");

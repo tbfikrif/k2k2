@@ -1,0 +1,15 @@
+Options +FollowSymLinks
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$ index.php?action=$1&sidebar-menu=$2&jenis=$3&status=$3&id=$3&id-anggota-rekap=$3&id_jenis=$4&status-rekap=$4 [QSA,L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ index.php?action=$1&sidebar-menu=$2&jenis=$3&status=$3&id=$3 [QSA,L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/([^/]+)/?$ index.php?action=$1&sidebar-menu=$2 [QSA,L,NC]

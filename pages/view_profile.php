@@ -35,6 +35,9 @@ if (!defined('DIDALAM_INDEX_PHP')){
                   $result = mysqli_query($koneksi,$sql);
                   $values = mysqli_fetch_assoc($result);
 
+                  $json = '{"id_anggota":"'.$values['id_anggota'].'","nama":"'.$values['nama'].'"}';
+                  $data = urlencode($json);
+
                 ?>
 
 
@@ -55,7 +58,12 @@ if (!defined('DIDALAM_INDEX_PHP')){
                 <br>
                 <input type="button" name="edit" value="Upload Foto" id="<?php echo $values["id_anggota"]; ?>" class="btn btn-default upload_foto_profile"/>
                 <br>
-
+                <br>
+                <img class="img-responsive" src="http://api.qrserver.com/v1/create-qr-code/?data=<?php echo $data; ?>&size=200x200"/>
+                <br>
+                <a href="http://api.qrserver.com/v1/create-qr-code/?data=<?php echo $data; ?>&size=200x200">
+                  <input type="button" name="downloadqr" value="Download QR CODE" class="btn btn-default">
+                </a>
                  <div id="data_Modal" class="modal fade">  
                       <div class="modal-dialog">  
                            <div class="modal-content">  
@@ -97,7 +105,7 @@ if (!defined('DIDALAM_INDEX_PHP')){
                     <tbody>
                       <tr>
                         <td>ID : </td>
-                        <td><?php echo $values['id_anggota']; ?></td>
+                        <td><?php echo $values['id_anggota'];?></td>
                       </tr>
                       <tr>
                         <td>Nama : </td>

@@ -34,15 +34,15 @@
     <div class="row">
                   <div class="col col-xs-6 flipInX animated">
                   <div class="form-group flipInX animated">
-					  <form method="POST" action="tampil/data-rekap">
-						  <div class="input-group"> 
-							<input type="text" class="form-control" id="start_date" name="start_date" style="width: 100px;" placeholder="Dari"> 
-							<input type="text" class="form-control" id="end_date" name="end_date" style="width: 100px; margin-left: 3px;" placeholder="Sampai">
-							<input type="submit" name="submit" value="Filter Tanggal" class="btn btn-info" style="margin-left: 3px;">
-						
-						  </div>
-					  </form>
-					</div> 
+            <form method="POST" action="tampil/data-rekap">
+              <div class="input-group"> 
+              <input type="text" class="form-control" id="start_date" name="start_date" style="width: 100px;" placeholder="Dari"> 
+              <input type="text" class="form-control" id="end_date" name="end_date" style="width: 100px; margin-left: 3px;" placeholder="Sampai">
+              <input type="submit" name="submit" value="Filter Tanggal" class="btn btn-info" style="margin-left: 3px;">
+            
+              </div>
+            </form>
+          </div> 
                 </div>
   </div>
 <hr class="bounceInLeft animated" style="  
@@ -116,19 +116,20 @@
           ?>          
     </tbody>
     <tfoot>
-								<tr>
-								  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-default btn-block btn-md active disabled">Total</a></th>
-								  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-default btn-block btn-md active disabled"><?php echo $no?></a></th>
-								  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-info btn-block btn-md "><?php echo $totalhadir?></a></th>
+                <tr>
+                  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-default btn-block btn-md active disabled">Total</a></th>
+                  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-default btn-block btn-md active disabled"><?php echo $no?></a></th>
+                  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-info btn-block btn-md "><?php echo $totalhadir?></a></th>
                   <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-primary btn-block btn-md "><?php echo $totaltelat?></a></th>
-								  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-danger btn-block btn-md "><?php echo $totalsakit?></a></th>
-								  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-warning btn-block btn-md "><?php echo $totalizin?></a></th>
-								  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-success btn-block btn-md "><?php echo $totalcuti?></a></th>
-									<th><a type="button" style="color: black;font-weight: bold;" class="btn btn-default btn-block btn-md"><?php echo $totalalpha?></a></th>
-								  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-default btn-block btn-md active disabled"><?php echo $totalakomodasi?></a></th>
+                  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-danger btn-block btn-md "><?php echo $totalsakit?></a></th>
+                  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-warning btn-block btn-md "><?php echo $totalizin?></a></th>
+                  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-success btn-block btn-md "><?php echo $totalcuti?></a></th>
+                  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-default btn-block btn-md"><?php echo $totalalpha?></a></th>
+                  <th><a type="button" style="color: black;font-weight: bold;" class="btn btn-default btn-block btn-md active disabled"><?php echo $totalakomodasi?></a></th>
                 </tr>  
     </tfoot>              
   </table>
+
   </div>
     <!-- Deprecated Feature Convert CSV 
     <button button type="button"  class="btn btn-danger pull-right">Convert PDF</button>
@@ -136,18 +137,19 @@
       <input type="submit" id="btn_convert" class="btn btn-primary pull-right" value="Konvert ke CSV" name="submit_csv-rekapabsen">  
   </form>
   -->
+
   <div id="dataModalAnggota" class="modal fade">
-			<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Detail Anggota</h4>
-				</div>
-				<div class="modal-body" id="employee_detail">
-				</div>
-				<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
-				</div>
-			</div>
-			</div>
-		</div>  
+      <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Detail Anggota</h4>
+        </div>
+        <div class="modal-body" id="employee_detail">
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+        </div>
+      </div>
+      </div>
+    </div>  

@@ -81,6 +81,17 @@
                          ?>
                 </select>
               </div>
+              <div class="form-group">
+                          <label>Status</label>  
+                          <select class="form-control select2 btn-primary" data-placeholder="Pilih Status" name="status"
+                                  style="width: 100%; color: #212121;"
+                                  data-validation="length" data-validation-length="min1" data-validation-error-msg="Pilih Status"
+                                  value="<?php echo $row['status']; ?>">
+                                <option value="Aktif">Aktif</option>
+                                <option value="Freelance">Freelance</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
+                          </select>   
+                        </div>
       <div class="form-group">
         <label for="alamat"> Alamat </label>
         <textarea  class="form-control" rows="5" id="alamat" name="alamat" placeholder="Alamat Anggota (Optional)"></textarea>  
@@ -93,6 +104,18 @@
                   <p><input type="radio" name="jenis_kelamin" id="jenis_kelamin" class="minimal" value="P" style="margin-top: 20px;"> Perempuan</p>
               </div>
               </div>
+              <div class="form-group">
+              <label>No. KTP</label> <?php echo $r['status']; ?>
+              <input type="text" placeholder="No KTP" name="noktp" id="noktp" class="form-control" value="<?php echo $res['no_ktp'];?>" data-validation-error-msg="No ktp masih kosong"/>  
+              </div>
+              <div class="form-group">
+                          <label>No. Rekening</label>  
+                          <input type="text" placeholder="No Rekening" name="norek" id="norek" class="form-control" value="<?php echo $res['no_rekening'];?>" data-validation-error-msg="No rekening masih kosong">  
+                          </div>
+              <div class="form-group">
+                          <label>NPWP</label>  
+                          <input type="text" placeholder="NPWP" name="npwp" id="npwp" class="form-control" value="<?php echo $res['npwp'];?>" data-validation-error-msg="Npwp masih kosong"/>  
+                          </div>
        <!-- Date dd/mm/yyyy -->
       <div class="form-group">
         <label for="tempat_lahir"> Tempat Lahir </label>

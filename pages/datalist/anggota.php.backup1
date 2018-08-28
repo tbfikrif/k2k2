@@ -1,6 +1,7 @@
 <?php
+
 //echo '<script>alert("Dilarang coy");window.location="../../form/form_login"</script>';
- if (!defined('DIDALAM_INDEX_PHP')){ 
+if (!defined('DIDALAM_INDEX_PHP')){ 
     //echo "Dilarang broh!";
     header("Location: ../../tampil/home");
  }
@@ -34,6 +35,8 @@
           <div class="col col-xs-6 flipInX animated">
             <a href="tampil/form-anggota" class="btn btn-primary">
               <span class="glyphicon glyphicon-plus"></span>TAMBAH DATA ANGGOTA</a>
+              <!-- BARU -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dataDetail">DETAIL DATA ANGGOTA</button>
           </div>
         </div>
         <hr class="bounceInLeft animated" style="  
@@ -43,6 +46,92 @@
       background-image: linear-gradient(to right, #ccc, #333, #ccc);">
       </div>
     </div>
+      <?php
+            $sql = "SELECT * FROM tb_anggota";
+            $result = mysqli_query($koneksi,$sql);
+            $arrID = array();
+            }
+      ?>
+      <div class="modal fade" id="dataDetail">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">DETAIL ANGGOTA</h4>
+                    </div>
+                    <div class="modal-body">
+                      <!-- CONTENT -->
+                      <div class="table table-responsive">
+                        <table class="table table-bordered">
+                          <?php
+                          $no = 0;
+                          $sql = "SELECT * FROM tb_anggota WHERE id_anggota=$arrID[$no] ";
+                          $result = mysqli_query($koneksi,$sql);
+                          while ($res = mysqli_fetch_array($result)){
+                               ?>
+                                <tr>
+                            <th>ID ANGGOTA</th>
+                            <td><?php echo $arrID[$no];?></td>
+                          </tr>
+                          <tr>
+                            <th>Nama</th>
+                            <td><?php echo $res['nama'];?></td>
+                          </tr>
+                          <tr>
+                            <th>TTL</th>
+                            <td>cek</td>
+                          </tr>
+                          <tr>
+                            <th>Alamat</th>
+                            <td>cek</td>
+                          </tr>
+                          <tr>
+                            <th>Jenis Kelamin</th>
+                            <td>cek</td>
+                          </tr>
+                          <tr>
+                            <th>Email</th>
+                            <td>cek</td>
+                          </tr>
+                          <tr>
+                            <th>Jabatan</th>
+                            <td>cek</td>
+                          </tr>
+                          <tr>
+                            <th>No. KTP</th>
+                            <td>cek</td>
+                          </tr>
+                          <tr>
+                            <th>No. NPWP</th>
+                            <td>cek</td>
+                          </tr>
+                          <tr>
+                            <th>No. Rekening</th>
+                            <td>cek</td>
+                          </tr>
+                        </table>
+                            <button type="submit" class="btn btn-default btn-prev" name="btn-prev" onclick="dataprev()">Prev</button>
+                            <button type="submit" class="btn btn-default btn-next" name="btn-next" onclick="datanext()">Next</button>
+                      </div>
+                      <!-- BUTT0N NEXT PREV -->
+                            <?php
+                            function dataprev(){
+                                $no = $no - 1;
+                              }
+                            function datanext(){
+                                $no = $no + 1;
+                            }
+                            ?>
+                          <?php
+                              }
+                          ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-block btn-rounded btn-danger" data-dismiss="modal">Tutup</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
     <div class="bounceInUp animated">
       <table class="table" id="data-anggota">
         <thead>
@@ -212,21 +301,6 @@
                             <p><input type="radio" name="jenis_kelamin" id="jenis_kelamin_pria" class="minimal" value="L" style="margin-top: 10px;"> Laki - Laki</p>
                             <p><input type="radio" name="jenis_kelamin" id="jenis_kelamin_wanita" class="minimal" value="P" style="margin-top: 20px;"> Perempuan</p>
                           <br />
-                          <?php
-                              $query = "SELECT * FROM tb_anggota WHERE id_anggota=53252";
-                              $result = mysqli_query($koneksi, $query);
-                              while($res = mysqli_fetch_array($result)){
-                           ?>
-                          <label>No. KTP</label> <?php echo $r['status']; ?>
-                          <input type="text" name="noktp" id="noktp" class="form-control" 
-                          value="<?php echo $res['no_ktp'];?>" />  
-                          <br />
-                          <label>No. Rekening</label>  
-                          <input type="text" name="norek" id="norek" class="form-control" value="<?php echo $res['no_rekening'];?>"/>  
-                          <br />
-                          <label>NPWP</label>  
-                          <input type="text" name="npwp" id="npwp" class="form-control" value="<?php echo $res['npwp'];?>"/>  
-                          <br /> 
                           <div class="form-group">
                           <?php 
                             $sql_query = "SELECT * FROM tb_jabatan";
@@ -245,20 +319,8 @@
                                   }
                                   ?>
                           </select>
-                        </div> 
-                        <div class="form-group">
-                          <label>Status</label>  
-                          <select class="form-control select2 btn-primary" data-placeholder="Pilih Status" name="status"
-                                  style="width: 100%; color: #212121;"
-                                  data-validation="length" data-validation-length="min1" data-validation-error-msg="Pilih Status"
-                                  value="<?php echo $row['status']; ?>">
-                                <option value="Aktif">Aktif</option>
-                                <option value="Freelance">Freelance</option>
-                                <option value="Tidak Aktif">Tidak Aktif</option>
-                          </select>   
-                        </div>
+                        </div>   
                 </div>  
-              <?php } ?>
                 <div class="modal-footer"> 
                      <input type="submit" name="submit" id="insert" value="Update" class="btn btn-success" /> 
                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
@@ -267,6 +329,38 @@
            </div>  
       </div>  
  </div>  
+ <script>
+$(document).ready(function(){
+ 
+ function fetch_post_data(post_id)
+ {
+  $.ajax({
+   url:"fetch.php",
+   method:"POST",
+   data:{post_id:post_id},
+   success:function(data)
+   {
+    $('#post_modal').modal('show');
+    $('#post_detail').html(data);
+   }
+  });
+ }
 
+ $(document).on('click', '.view', function(){
+  var post_id = $(this).attr("id");
+  fetch_post_data(post_id);
+ });
 
-  </html>
+ $(document).on('click', '.previous', function(){
+  var post_id = $(this).attr("id");
+  fetch_post_data(post_id);
+ });
+
+ $(document).on('click', '.next', function(){
+  var post_id = $(this).attr("id");
+  fetch_post_data(post_id);
+ });
+ 
+});
+</script>
+</html>

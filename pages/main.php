@@ -539,6 +539,10 @@ if ($values1['foto_profile'] != '-') {
                                         <li>
                                             <a href="tampil/data-rekap">
                                                 <i class="fa fa-table"></i> Data Rekap Absen </a>
+
+                                        <li>
+                                            <a href="tampil/data-rekap-detail">
+                                                <i class="fa fa-table"></i> Rekap Absen Detail </a>
                                         </li>
                                         <li>
                                             <a href="tampil/konfigurasi-kakatu">
@@ -610,6 +614,8 @@ if ((isset($_GET["action"])) && ($_GET["action"] == "tampil") && ($_GET["sidebar
         include_once "pages/datalist/tgllibur.php";
     } elseif ((isset($_GET["action"])) && ($_GET["action"] == "tampil") && ($_GET["sidebar-menu"] == "data-rekap")) {
         include_once "pages/datalist/rekap_absensi.php";
+    } elseif ((isset($_GET["action"])) && ($_GET["action"] == "tampil") && ($_GET["sidebar-menu"] == "data-rekap-detail")) {
+        include_once "pages/datalist/rekap_absensi_detail.php";
     } elseif ((isset($_GET["action"])) && ($_GET["action"] == "tampil") && ($_GET["sidebar-menu"] == "konfigurasi-kakatu")) {
         include_once "pages/forms/form_konfigurasi.php";
     } elseif ((isset($_GET["action"])) && ($_GET["action"] == "proses-submit") && ($_GET["sidebar-menu"] == "absensi")) {

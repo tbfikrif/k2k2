@@ -59,7 +59,7 @@
       $day = date('j', strtotime($tgl_now));
       $month = date('F', strtotime($tgl_now));
       $year = date('Y', strtotime($tgl_now));
-    ?>
+    ?>  
       
       <h3 class="pull-right" style="float: right;"> <?php echo $dayname." , ".$day." - ".$month." - ".$year; ?> </h3>
       
